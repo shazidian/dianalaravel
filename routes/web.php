@@ -31,9 +31,9 @@ Route::get('/baru', function(){
 Route::redirect('/lama', '/baru');
 
 //Parameter Opsional
-// Route::get('/user/{name?}', function ($name = 'Guest') {
-//     return "Halo, $name!";
-// }); comment
+Route::get('/user/{name?}', function ($name = 'Guest') {
+    return "Halo, $name!";
+});
 
 //Route Regular Expression
 Route::get('/barang/{id}', function ($id) {
