@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+//Acara BKPM 3
 //Route View
 Route::view('/dashboard', 'dashboard');
 Route::get('/', function () {
@@ -51,3 +52,19 @@ Route::post('/submit', function ($request) {
 });
 
 
+//ACARA BKPM 4
+// Route::prefix('seller') // Prefix 'seller' untuk setiap route dalam grup ini
+    // ->middleware(['auth', 'is_seller']) // Middleware 'auth' dan 'is_seller'
+    Route::prefix('seller')->group(function () {
+        Route::get('/dashboardd', function () {
+            return view('seller.dashboardd'); // Mengarahkan ke Blade Template
+        })->name('dashboardd'); // Route ini bisa diakses dengan route('seller.dashboard')
+
+        Route::get('/products', function () {
+            return view('seller.products');
+        })->name('products');
+
+        Route::get('/orders', function () {
+            return view('seller.orders');
+        })->name('orders');
+    });

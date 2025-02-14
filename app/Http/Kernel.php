@@ -22,7 +22,15 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
-
+    protected $routeMiddleware = [
+        // Middleware bawaan Laravel
+        'auth' => \App\Http\Middleware\Authenticate::class,
+    
+        // Tambahkan middleware seller
+        'is_seller' => \App\Http\Middleware\IsSeller::class,
+    ];
+    
+    
     /**
      * The application's route middleware groups.
      *
