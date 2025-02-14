@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,18 +54,9 @@ Route::post('/submit', function ($request) {
 
 
 //ACARA BKPM 4
-// Route::prefix('seller') // Prefix 'seller' untuk setiap route dalam grup ini
-    // ->middleware(['auth', 'is_seller']) // Middleware 'auth' dan 'is_seller'
-    Route::prefix('seller')->group(function () {
-        Route::get('/dashboardd', function () {
-            return view('seller.dashboardd'); // Mengarahkan ke Blade Template
-        })->name('dashboardd'); // Route ini bisa diakses dengan route('seller.dashboard')
-
-        Route::get('/products', function () {
-            return view('seller.products');
-        })->name('products');
-
-        Route::get('/orders', function () {
-            return view('seller.orders');
-        })->name('orders');
+    Route::prefix('seller')->group(function(){
+        Route::get('/produks', function(){
+            return "Ini Laman Produk dari Seller";
+        });
     });
+    
