@@ -21,6 +21,6 @@ class IsSeller
         }
          // Redirect jika bukan seller
          return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman seller.');
-        
+
     }
 }

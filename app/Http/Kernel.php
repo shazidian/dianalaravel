@@ -25,12 +25,12 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         // Middleware bawaan Laravel
         'auth' => \App\Http\Middleware\Authenticate::class,
-    
+
         // Tambahkan middleware seller
         'is_seller' => \App\Http\Middleware\IsSeller::class,
     ];
-    
-    
+
+
     /**
      * The application's route middleware groups.
      *
