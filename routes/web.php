@@ -64,6 +64,7 @@ Route::post('/submit', function ($request) {
     //ACARA BKPM 5
 
     Route::get('/pengguna', [ManagementUserController::class, 'index']);
+    Route::resource('/pengguna', ManagementUserController::class);
     // Route::get('/pengguna', 'ManagementUserController');
     Route::get("/home", function(){
         return view("home");
