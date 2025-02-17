@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ManagementUserController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -59,4 +60,11 @@ Route::post('/submit', function ($request) {
             return "Ini Laman Produk dari Seller";
         });
     });
-    
+
+    //ACARA BKPM 5
+
+    Route::get('/pengguna', [ManagementUserController::class, 'index']);
+    // Route::get('/pengguna', 'ManagementUserController');
+    Route::get("/home", function(){
+        return view("home");
+    });
