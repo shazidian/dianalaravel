@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ManagementUserController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -47,25 +48,26 @@ Route::get('/barang/{id}', function ($id) {
 Route::get('/pesan/{id}', function ($id) {
     return "Nomor Pesanan: $id";
 });
-
 //CSRF
 Route::post('/submit', function ($request) {
     return 'Form berhasil dikirim!';
 });
-
-
 //ACARA BKPM 4
     Route::prefix('seller')->group(function(){
         Route::get('/produks', function(){
             return "Ini Laman Produk dari Seller";
         });
     });
-
-    //ACARA BKPM 5
-
+//ACARA BKPM 5
     Route::get('/pengguna', [ManagementUserController::class, 'index']);
     Route::resource('/pengguna', ManagementUserController::class);
     // Route::get('/pengguna', 'ManagementUserController');
     Route::get("/home", function(){
         return view("home");
     });
+// ACARA BKPM 7
+// Route::group(['namespace' => 'frontend'], function(){
+//     Route::resource('homes', 'HomeController');
+// });
+Route::get('/homes', [HomeController::class, 'index']);
+Route::resource('/homes', HomeController::class);
