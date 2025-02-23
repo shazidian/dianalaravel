@@ -76,3 +76,6 @@ Route::resource('/homes', HomeController::class);
 //ACARA BKPM 8
 Route::get('/dashboards', [DashboardController::class, 'index']);
 Route::resource('/dashboards', DashboardController::class);
+// Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
