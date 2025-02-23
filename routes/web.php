@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ManagementUserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -71,3 +72,7 @@ Route::post('/submit', function ($request) {
 // });
 Route::get('/homes', [HomeController::class, 'index']);
 Route::resource('/homes', HomeController::class);
+
+//ACARA BKPM 8
+Route::get('/dashboards', [DashboardController::class, 'index']);
+Route::resource('/dashboards', DashboardController::class);
