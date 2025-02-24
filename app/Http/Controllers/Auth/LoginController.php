@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-
-
     use AuthenticatesUsers;
 
     /**
@@ -17,33 +15,45 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function login(Request $request)
-    {
-        $this->validate($request, [
-            'username'=> 'required|string',
-            'password'=> 'required|string|min:6',
-
-        ]);
-        $loginType = filter_var($request->input('username'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-        $login = [
-            $loginType=> $request->username,
-            'password'=> $request->password,
-        ];
-        if (auth()->attempt($login)){
-            return redirect()->route('home');
-        }
-        return redirect()->route('login')->with(['error' => 'Email/Password salah!']);
-    }
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        $this->middleware('auth')->only('logout');
+    }
+
+    /**
+     * Handle login validation.
+     */
+    protected function credentials(Request $request)
+    {
+        $loginType = filter_var($request->input('username'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        return [
+            $loginType => $request->input('username'),
+            'password' => $request->input('password'),
+        ];
+    }
+
+    /**
+     * If authentication is successful, redirect here.
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        return redirect()->route('login');
+    }
+
+    /**
+     * If authentication fails, redirect back with error message.
+     */
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        return redirect()->route('login')
+            ->withErrors(['error' => 'Email/Password salah!'])
+            ->withInput($request->only('username', 'remember'));
     }
 }
