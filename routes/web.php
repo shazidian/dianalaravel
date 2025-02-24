@@ -5,6 +5,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ManagementUserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -63,9 +65,9 @@ Route::post('/submit', function ($request) {
     Route::get('/pengguna', [ManagementUserController::class, 'index']);
     Route::resource('/pengguna', ManagementUserController::class);
     // Route::get('/pengguna', 'ManagementUserController');
-    Route::get("/home", function(){
-        return view("home");
-    });
+    // Route::get("/home", function(){
+    //     return view("home");
+    // });
 // ACARA BKPM 7
 // Route::group(['namespace' => 'frontend'], function(){
 //     Route::resource('homes', 'HomeController');
@@ -77,5 +79,12 @@ Route::resource('/homes', HomeController::class);
 Route::get('/dashboards', [DashboardController::class, 'index']);
 Route::resource('/dashboards', DashboardController::class);
 // Auth::routes();
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+// Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');// Route::resource('/login', LoginController::class);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+
+// Rute untuk memproses data registrasi
+Route::post('/register', [RegisterController::class, 'register']);
