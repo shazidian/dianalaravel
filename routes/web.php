@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\backend\PengalamanKerjaController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -88,3 +89,12 @@ Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->na
 
 // Rute untuk memproses data registrasi
 Route::post('/register', [RegisterController::class, 'register']);
+
+//acara13
+Route::resource('/pengalaman_kerja', PengalamanKerjaController::class);
+Route::group(['namespace' => 'backend'], function()
+{
+    Route::resource('dashboard', 'DashboardController');
+    Route::resource('pendidikan', 'PendidikanController');
+    // Route::resource('/pengalaman_kerja', PengalamanKerjaController::class);;
+});
