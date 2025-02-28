@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ManagementUserController;
 use App\Http\Controllers\HomeController;
@@ -73,8 +74,9 @@ Route::post('/submit', function ($request) {
 // Route::group(['namespace' => 'frontend'], function(){
 //     Route::resource('homes', 'HomeController');
 // });
-Route::get('/homes', [HomeController::class, 'index']);
-Route::resource('/homes', HomeController::class);
+Route::group(['namespace' => 'App\Http\Controllers\frontend'], function() {
+    Route::resource('homes', 'HomeController');
+});
 
 //ACARA BKPM 8
 Route::get('/dashboards', [DashboardController::class, 'index']);
@@ -91,10 +93,16 @@ Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->na
 Route::post('/register', [RegisterController::class, 'register']);
 
 //acara13
-Route::resource('/pengalaman_kerja', PengalamanKerjaController::class);
-Route::group(['namespace' => 'backend'], function()
+// Route::resource('/pengalaman_kerja', PengalamanKerjaController::class);
+Route::group(['namespace' => ''], function()
 {
     Route::resource('dashboard', 'DashboardController');
     Route::resource('pendidikan', 'PendidikanController');
-    // Route::resource('/pengalaman_kerja', PengalamanKerjaController::class);;
+    Route::resource('pengalaman_kerja', PengalamanKerjaController::class);
 });
+
+Auth::routes();
+
+Route::get('/home', function () {
+    return view ('home');
+})->name('home');
