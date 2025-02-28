@@ -21,7 +21,7 @@
         <div class="col-lg-8">
           <div class="row">
 
-            {{-- <!-- Sales Card -->
+             <!-- Sales Card -->
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card sales-card">
 
@@ -54,7 +54,7 @@
                 </div>
 
               </div>
-            </div><!-- End Sales Card --> --}}
+            </div><!-- End Sales Card -->
 
             <!-- Revenue Card -->
             {{-- <div class="col-xxl-4 col-md-6">
@@ -355,10 +355,10 @@
 {{--
                 </div> --}}
 
-              </div>
-            </div><!-- End Top Selling -->
+              {{-- </div>
+            </div><!-- End Top Selling --> --}}
 
-          </div>
+          {{-- </div> --}}
         </div><!-- End Left side columns -->
 
 
