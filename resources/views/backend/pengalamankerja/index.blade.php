@@ -49,13 +49,6 @@
                   </ul>
             </div>
         </div>
-
-
-
-
-
-
-
         <!-- Form Validations -->
         <div class="row">
             <div class="col-lg-12">
@@ -71,11 +64,43 @@
                         @endif
                         <a href="{{ route('pengalaman_kerja.create') }}"><button class="btn btn-primary"
                             type="button"><i class="fa fa-plus">Tambah</i></button></a>
+
+                        <br><br>
+                        <table class="table table-striped table-advance table-hover">
+                            <tbody>
+                                <tr>
+                                    <th><i class="bi bi-file-earmark-person"></i> Nama Perusahaan</th>
+                                    <th><i class="bi bi-briefcase-fill"></i> Jabatan</th>
+                                    <th><i class="bi bi-calendar"></i> Tahun Masuk</th>
+                                    <th><i class="bi bi-calendar2-check-fill"></i> Tahun Selesai</th>
+                                    <th><i class="bi bi-pencil-square"></i>Action</th>
+                                </tr>
+                                @foreach ($pengalaman_kerja as $item)
+                                <tr>
+                                    <td>{{ $item->nama }}</td>
+                                    <td>{{ $item->jabatan }}</td>
+                                    <td>{{ $item->tahun_masuk }}</td>
+                                    <td>{{ $item->tahun_keluar }}</td>
+                                    <td>
+                                        <div class="btn_group">
+                                            <a class="btn btn-warning">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fa fa-trash-o"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </section>
             </div>
         </div>
         <!--page end-->
+
     </section>
 </section>
 @endsection
