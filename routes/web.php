@@ -13,6 +13,7 @@ use App\Http\Controllers\backend\PendidikanController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\CobaController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -124,3 +125,8 @@ Route::post('/formulir/proses', [PegawaiController::class, 'proses']);
 
 //acara 18
 Route::get('/cobaeror/{nama}', [CobaController::class, 'index']);
+
+//acara 19
+Route::get('/upload', [UploadController::class, 'upload'])->name('upload');
+Route::post('/upload/proses', [UploadController::class, 'proses_upload'])
+->name('upload.proses');
