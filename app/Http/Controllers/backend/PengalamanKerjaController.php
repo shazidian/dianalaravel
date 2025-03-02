@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 class PengalamanKerjaController extends Controller
 {
     public function index(){
-        return view('backend.pengalamankerja.index');
+        $pengalaman_kerja = DB::table('pengalaman_kerja')->get();
+        return view('backend.pengalamankerja.index', compact('pengalaman_kerja'));
     }
     public function create(){
         $pengalaman_kerja = null;
