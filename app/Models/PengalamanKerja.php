@@ -12,5 +12,5 @@ class PengalamanKerja extends Model
     protected $fillable = [
         'nama', 'jabatan', 'tahun_masuk', 'tahun_keluar',
     ];
-    // use HasFactory;
+    use HasFactory;
 }
