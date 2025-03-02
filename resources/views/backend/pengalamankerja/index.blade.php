@@ -63,7 +63,7 @@
                             </div>
                         @endif
                         <a href="{{ route('pengalaman_kerja.create') }}"><button class="btn btn-primary"
-                            type="button"><i class="fa fa-plus">Tambah</i></button></a>
+                            type="button"><i class="bi bi-plus-lg">Tambah</i></button></a>
 
                         <br><br>
                         <table class="table table-striped table-advance table-hover">
@@ -84,12 +84,17 @@
                                     <td>
                                         <div class="btn_group">
 
-                                            <a class="btn btn-warning" href="{{ route('pengalaman_kerja.edit', $item->id)}}">
-                                                <i class="bi bi-pencil-square"></i>
-                                            </a>
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="bi bi-trash-fill"></i>
-                                            </button>
+
+                                            <form action="{{ route('pengalaman_kerja.destroy', $item->id)}}" method="POST">
+                                                <a class="btn btn-warning" href="{{ route('pengalaman_kerja.edit', $item->id)}}">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </a>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                    <i class="bi bi-trash-fill"></i>
+                                                </button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
