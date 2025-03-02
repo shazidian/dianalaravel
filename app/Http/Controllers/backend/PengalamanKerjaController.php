@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\backend;
 use Illuminate\Support\Facades\DB, App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Illuminate\Http\Request,  App\Models\PengalamanKerja;
 
 class PengalamanKerjaController extends Controller
 {
@@ -38,5 +38,10 @@ class PengalamanKerjaController extends Controller
             'tahun_keluar' => $request->tahun_keluar,
         ]);
         return redirect()->route('pengalaman_kerja.index')->with('success', 'Pengalaman Kerja Anda berhasil diperbaharui!');
+    }
+    public function destroy(PengalamanKerja $pengalaman_kerja)
+    {
+        $pengalaman_kerja->delete();
+        return redirect()->route('pengalaman_kerja.index')->with('success', 'Pengalaman Kerja Anda berhasil dihapus!');
     }
 }
