@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\backend\PengalamanKerjaController;
+use App\Http\Controllers\backend\PendidikanController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -97,8 +98,9 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::group(['namespace' => ''], function()
 {
     Route::resource('dashboard', 'DashboardController');
-    Route::resource('pendidikan', 'PendidikanController');
+    // Route::resource('pendidikan', 'PendidikanController');
     Route::resource('pengalaman_kerja', PengalamanKerjaController::class);
+    Route::resource('pendidikan', PendidikanController::class);
 });
 
 Auth::routes();
