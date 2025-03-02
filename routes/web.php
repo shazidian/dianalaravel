@@ -10,6 +10,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\backend\PengalamanKerjaController;
 use App\Http\Controllers\backend\PendidikanController;
+use App\Http\Controllers\SessionController;
+use App\Http\Controllers\PegawaiController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -108,3 +110,13 @@ Auth::routes();
 Route::get('/home', function () {
     return view ('home');
 })->name('home');
+
+//acara 17
+// Route::get('/session/create', 'SessionController@create');
+Route::get('/session/create', [SessionController::class, 'create']);
+Route::get('/session/show', [SessionController::class, 'show']);
+Route::get('/session/delete', [SessionController::class, 'delete']);
+
+Route::get('/pegawai/{nama}', [SessionController::class, 'pegawai']);
+Route::get('/formulir', [PegawaiController::class, 'formulir']);
+Route::post('/formulir/proses', [PegawaiController::class, 'proses']);
