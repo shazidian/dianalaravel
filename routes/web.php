@@ -12,6 +12,7 @@ use App\Http\Controllers\backend\PengalamanKerjaController;
 use App\Http\Controllers\backend\PendidikanController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\CobaController;
 use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
@@ -120,3 +121,6 @@ Route::get('/session/delete', [SessionController::class, 'delete']);
 Route::get('/pegawai/{nama}', [SessionController::class, 'pegawai']);
 Route::get('/formulir', [PegawaiController::class, 'formulir']);
 Route::post('/formulir/proses', [PegawaiController::class, 'proses']);
+
+//acara 18
+Route::get('/cobaeror/{nama}', [CobaController::class, 'index']);
