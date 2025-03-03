@@ -130,3 +130,10 @@ Route::get('/cobaeror/{nama}', [CobaController::class, 'index']);
 Route::get('/upload', [UploadController::class, 'upload'])->name('upload');
 Route::post('/upload/proses', [UploadController::class, 'proses_upload'])
 ->name('upload.proses');
+
+//acara20
+Route::get('/dropzone', [UploadController::class, 'dropzone'])->name('dropzone');
+Route::post('/dropzone/store', [UploadController::class, 'dropzone_store']);
+
+Route::get('/pdf_upload', [UploadController::class, 'pdf_upload'])->name('pdf.upload');
+Route::get('/pdf/store', [UploadController::class, 'pdf_store'])->name('pdf.store');
