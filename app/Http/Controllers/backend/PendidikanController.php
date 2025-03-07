@@ -31,6 +31,5 @@ public function edit( Pendidikan $pendidikan)
     {
         $pendidikan->delete();
         return redirect()->route('pendidikan.index')->with('success', 'Pendidikan Anda berhasil dihapus!');
-
     }
 }

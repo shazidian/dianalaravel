@@ -6,7 +6,6 @@ use Illuminate\Http\Request,
 App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
 
-
 class ApiPendidikanController extends Controller
 {
     public function getAll(){

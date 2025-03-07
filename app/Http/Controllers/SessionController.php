@@ -25,4 +25,5 @@ class SessionController extends Controller
     public function pegawai(Request $request){
         return $request->segment(2);
     }
+    
 }
