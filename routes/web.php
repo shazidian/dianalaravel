@@ -36,10 +36,10 @@ Route::get('/users', [UserController::class, 'index']);
 Route::get('users/{id}', [UserController::class, 'show']);
 
 //Contoh Route Redirect
-Route::get('/lama', function(){
+Route::get('/lama', function () {
     return "Hai! Ini Laman Web Versi 1.0";
 });
-Route::get('/baru', function(){
+Route::get('/baru', function () {
     return "Selamat! Anda berada di Laman Web Versi 2.0";
 });
 Route::redirect('/lama', '/baru');
@@ -63,23 +63,23 @@ Route::post('/submit', function ($request) {
     return 'Form berhasil dikirim!';
 });
 //ACARA BKPM 4
-    Route::prefix('seller')->group(function(){
-        Route::get('/produks', function(){
-            return "Ini Laman Produk dari Seller";
-        });
+Route::prefix('seller')->group(function () {
+    Route::get('/produks', function () {
+        return "Ini Laman Produk dari Seller";
     });
+});
 //ACARA BKPM 5
-    Route::get('/pengguna', [ManagementUserController::class, 'index']);
-    Route::resource('/pengguna', ManagementUserController::class);
-    // Route::get('/pengguna', 'ManagementUserController');
-    // Route::get("/home", function(){
-    //     return view("home");
-    // });
+Route::get('/pengguna', [ManagementUserController::class, 'index']);
+Route::resource('/pengguna', ManagementUserController::class);
+// Route::get('/pengguna', 'ManagementUserController');
+// Route::get("/home", function(){
+//     return view("home");
+// });
 // ACARA BKPM 7
 // Route::group(['namespace' => 'frontend'], function(){
 //     Route::resource('homes', 'HomeController');
 // });
-Route::group(['namespace' => 'App\Http\Controllers\frontend'], function() {
+Route::group(['namespace' => 'App\Http\Controllers\frontend'], function () {
     Route::resource('homes', 'HomeController');
 });
 
@@ -90,7 +90,6 @@ Route::resource('/dashboards', DashboardController::class);
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-// Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');// Route::resource('/login', LoginController::class);
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 
@@ -98,9 +97,8 @@ Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->na
 Route::post('/register', [RegisterController::class, 'register']);
 
 //acara13
-// Route::resource('/pengalaman_kerja', PengalamanKerjaController::class);
-Route::group(['namespace' => ''], function()
-{
+
+Route::group(['namespace' => ''], function () {
     Route::resource('dashboard', 'DashboardController');
     // Route::resource('pendidikan', 'PendidikanController');
     Route::resource('pengalaman_kerja', PengalamanKerjaController::class);
@@ -110,7 +108,7 @@ Route::group(['namespace' => ''], function()
 Auth::routes();
 
 Route::get('/home', function () {
-    return view ('home');
+    return view('home');
 })->name('home');
 
 //acara 17
@@ -129,11 +127,11 @@ Route::get('/cobaeror/{nama}', [CobaController::class, 'index']);
 //acara 19
 Route::get('/upload', [UploadController::class, 'upload'])->name('upload');
 Route::post('/upload/proses', [UploadController::class, 'proses_upload'])
-->name('upload.proses');
-
+    ->name('upload.proses');
+Route::post('upload/resize', [UploadController::class, 'resize_upload'])->name('upload.resize');
 //acara20
 Route::get('/dropzone', [UploadController::class, 'dropzone'])->name('dropzone');
 Route::post('/dropzone/store', [UploadController::class, 'dropzone_store']);
 
 Route::get('/pdf_upload', [UploadController::class, 'pdf_upload'])->name('pdf.upload');
-Route::get('/pdf/store', [UploadController::class, 'pdf_store'])->name('pdf.store');
+Route::post('/pdf/store', [UploadController::class, 'pdf_store']);

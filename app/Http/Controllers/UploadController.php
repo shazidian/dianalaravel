@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\File;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 use Illuminate\Http\Request;
 
 class UploadController extends Controller
@@ -56,4 +58,79 @@ public function pdf_store(Request $request){
     $pdf->move(public_path('pdf/dropzone'), $pdfName);
     return response()->json(['success'=>$pdfName]);
 }
+// public function resize_upload(Request $request)
+// {
+//     $this->validate($request, [
+//         'file' => 'required',
+//         'keterangan' => 'required',
+//     ]);
+
+//     // TENTUKAN PATH LOKASI UPLOAD
+//     $path = public_path('img/logo');
+
+//     // JIKA FOLDERNYA BELUM ADA
+//     if (!File::isDirectory($path)) {
+//         // MAKA FOLDER TERSEBUT AKAN DIBUAT
+//         File::makeDirectory($path, 0777, true);
+//     }
+
+//     // MENGAMBIL FILE IMAGE DARI FORM
+//     $file = $request->file('file');
+
+//     // MEMBUAT NAME FILE DARI GABUNGAN TANGGAL DAN UNIQID()
+//     $fileName = 'logo_' . uniqid() . '.' . $file->getClientOriginalExtension();
+
+//     // MEMBUAT CANVAS IMAGE SEBESAR DIMENSI
+//     $canvas = Image::canvas(200, 200);
+
+//     // RESIZE IMAGE SESUAI DIMENSI DENGAN MEMPERTAHANKAN RATIO
+//     $resizeImage = Image::make($file)->resize(null, 200, function($constraint) {
+//         $constraint->aspectRatio();
+//     });
+
+//     // MEMASUKAN IMAGE YANG TELAH DIRESIZE KE DALAM CANVAS
+//     $canvas->insert($resizeImage, 'center');
+
+//     // SIMPAN IMAGE KE FOLDER
+//     if ($canvas->save($path . '/' . $fileName)) {
+//         return redirect(route('upload'))->with('success', 'Data berhasil ditambahkan!');
+//     } else {
+//         return redirect(route('upload'))->with('error', 'Data gagal ditambahkan!');
+//     }
+// }
+public function resize_upload(Request $request)
+{
+    $this->validate($request, [
+        'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'keterangan' => 'required',
+    ]);
+
+    // TENTUKAN PATH LOKASI UPLOAD
+    $path = public_path('img/logo');
+
+    // JIKA FOLDERNYA BELUM ADA, BUAT FOLDERNYA
+    if (!File::isDirectory($path)) {
+        File::makeDirectory($path, 0777, true);
+    }
+
+    // MENGAMBIL FILE IMAGE DARI FORM
+    $file = $request->file('file');
+
+    // MEMBUAT NAME FILE
+    $fileName = 'logo_' . uniqid() . '.' . $file->getClientOriginalExtension();
+
+    // INISIALISASI IMAGE MANAGER DENGAN DRIVER GD
+    $manager = new ImageManager(new Driver());
+
+    // MEMBUAT IMAGE DAN RESIZE
+    $image = $manager->read($file->getPathname())->scale(height: 200);
+
+    // SIMPAN IMAGE KE FOLDER
+    if ($image->save($path . '/' . $fileName)) {
+        return redirect(route('upload'))->with('success', 'Data berhasil ditambahkan!');
+    } else {
+        return redirect(route('upload'))->with('error', 'Data gagal ditambahkan!');
+    }
+}
+
 }

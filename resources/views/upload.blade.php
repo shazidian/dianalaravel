@@ -34,7 +34,24 @@
                     </div>
 
                     <input type="submit" value="Upload" class="btn btn-primary">
-                    <form action="{{ route('upload.proses') }}" method="POST"
+                    @if (session('success'))
+                    <div class="alert alert-success alert-dismissible">
+                        <a href="#" class="close text-decoration-none"
+                        data-dismiss="alert" aria-label="close">&times;</a>
+                        {{ session('success') }}
+
+                    </div>
+
+                    @endif
+                    @if (session('error'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <a href="#" class="close text-decoration-none"
+                        data-dismiss="alert" aria-label="close">&times;</a>
+                        {{ session('error') }}
+                    </div>
+
+                    @endif
+                    <form action="{{ url('upload.resize') }}" method="POST"
                      enctype="multipart/form-data">
                 </form>
             </div>

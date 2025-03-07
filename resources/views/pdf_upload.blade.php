@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h1 class="text-center">Dropzone PDF Upload in Laravel</h1><br>
-                <form action="{{ route('pdf.store') }}" method="post" name="file" files="true"
+                <form action="{{ url('/pdf/store') }}" method="post" name="file" files="true"
                  enctype="multipart/form-data" class="dropzone" id="pdf-upload">
                     @csrf
                 </form>
@@ -41,8 +41,6 @@
         });
             }
         });
-
-
         </script>
 </body>
 </html>
