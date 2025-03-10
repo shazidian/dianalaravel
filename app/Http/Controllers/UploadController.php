@@ -101,7 +101,7 @@ public function pdf_store(Request $request){
 public function resize_upload(Request $request)
 {
     $this->validate($request, [
-        'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'file' => 'required',
         'keterangan' => 'required',
     ]);
 
@@ -123,7 +123,7 @@ public function resize_upload(Request $request)
     $manager = new ImageManager(new Driver());
 
     // MEMBUAT IMAGE DAN RESIZE
-    $image = $manager->read($file->getPathname())->scale(height: 200);
+    $image = $manager->read($file->getPathname())->scale(200, 200);
 
     // SIMPAN IMAGE KE FOLDER
     if ($image->save($path . '/' . $fileName)) {
