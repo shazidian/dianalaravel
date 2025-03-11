@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManager;
-use Intervention\Image\Drivers\Gd\Driver;
 use Illuminate\Http\Request;
 
 class UploadController extends Controller
@@ -58,39 +57,42 @@ public function pdf_store(Request $request){
     $pdf->move(public_path('pdf/dropzone'), $pdfName);
     return response()->json(['success'=>$pdfName]);
 }
-public function resize_upload(Request $request)
-{
-    $this->validate($request, [
-        'file' => 'required',
-        'keterangan' => 'required',
-    ]);
 
-    // TENTUKAN PATH LOKASI UPLOAD
-    $path = public_path('img/logo');
-
-    // JIKA FOLDERNYA BELUM ADA, BUAT FOLDERNYA
-    if (!File::isDirectory($path)) {
-        File::makeDirectory($path, 0777, true);
+public function viewResize()
+    {
+        return view('upload_resize');
     }
 
-    // MENGAMBIL FILE IMAGE DARI FORM
-    $file = $request->file('file');
+    public function proses_upload_resize(Request $request, ImageManager $imageManager)
+    {
+        $request->validate([
+            'file' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'keterangan' => 'required',
+        ]);
 
-    // MEMBUAT NAME FILE
-    $fileName = 'logo_' . uniqid() . '.' . $file->getClientOriginalExtension();
+        // Tentukan path lokasi upload
+        $path = public_path('img/logo');
 
-    // INISIALISASI IMAGE MANAGER DENGAN DRIVER GD
-    $manager = new ImageManager(new Driver());
+        // Jika folder belum ada, buat foldernya
+        if (!File::isDirectory($path)) {
+            File::makeDirectory($path, 0777, true);
+        }
 
-    // MEMBUAT IMAGE DAN RESIZE
-    $image = $manager->read($file->getPathname())->scale(200, 200);
+        // Ambil file dari form
+        $file = $request->file('file');
 
-    // SIMPAN IMAGE KE FOLDER
-    if ($image->save($path . '/' . $fileName)) {
-        return redirect(route('upload'))->with('success', 'Data berhasil ditambahkan!');
-    } else {
-        return redirect(route('upload'))->with('error', 'Data gagal ditambahkan!');
+        // Buat nama file unik
+        $fileName = 'logo_' . uniqid() . '.' . $file->getClientOriginalExtension();
+
+        // Baca gambar menggunakan ImageManager
+        $image = $imageManager->read($file->getRealPath());
+
+        $resizedImage = $image->cover(200, 200);
+
+        // Simpan hasil gambar ke folder
+        file_put_contents($path . '/' . $fileName, $resizedImage->toJpeg());
+
+        return redirect(route('upload.resize'))->with('success', 'Data berhasil ditambahkan!');
     }
-}
 
 }

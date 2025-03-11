@@ -128,7 +128,9 @@ Route::get('/cobaeror/{nama}', [CobaController::class, 'index']);
 Route::get('/upload', [UploadController::class, 'upload'])->name('upload');
 Route::post('/upload/proses', [UploadController::class, 'proses_upload'])
     ->name('upload.proses');
-Route::post('upload/resize', [UploadController::class, 'resize_upload'])->name('upload.resize');
+//resize gambar
+Route::get('/upload/resize', [UploadController::class, 'viewResize'])->name('upload.resize');
+Route::post('/upload/resize/proses', [UploadController::class, 'proses_upload_resize'])->name('upload.proses.resize');
 //acara20
 Route::get('/dropzone', [UploadController::class, 'dropzone'])->name('dropzone');
 Route::post('/dropzone/store', [UploadController::class, 'dropzone_store']);
