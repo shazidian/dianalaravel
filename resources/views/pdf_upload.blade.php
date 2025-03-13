@@ -22,7 +22,7 @@
     <script type="text/javascript">
         Dropzone.autoDiscover = false;
         var myDropzone = new Dropzone('#pdf-upload', {
-            maxFilesize: 1,
+            maxFilesize: 40,
             acceptedFiles: ".pdf",
             addRemoveLinks: true,
             autoProcessQueue: false,
