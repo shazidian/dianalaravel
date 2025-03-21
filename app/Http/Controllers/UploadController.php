@@ -13,7 +13,7 @@ class UploadController extends Controller
 
     public function proses_upload(Request $request){
         $this->validate($request, [
-            'file' => 'required',
+            'file' => 'required|image|mimes:jpg,jpeg,png,gif|max:2048',
             'keterangan' => 'required',
         ]);
 
@@ -40,23 +40,48 @@ class UploadController extends Controller
     return view('dropzone');
 }
 
+// public function dropzone_store(Request $request)
+// {
+//     $image = $request->file('file');
+
+//     $imageName = time().'.'.$image->extension();
+//     $image->move(public_path('img/dropzone'), $imageName);
+//     return response()->json(['success' => $imageName]);
+// }
 public function dropzone_store(Request $request)
 {
-    $image = $request->file('file');
+    if ($request->hasFile('file')) {
+        $images = $request->file('file');
+        $imageNames = [];
 
-    $imageName = time().'.'.$image->extension();
-    $image->move(public_path('img/dropzone'), $imageName);
-    return response()->json(['success' => $imageName]);
+        foreach ($images as $image) {
+            $imageName = 'img_'.time() . '.' . $image->extension();
+            $image->move(public_path('img/dropzone'), $imageName);
+            $imageNames[] = $imageName;
+        }
+
+        return response()->json(['success' => $imageNames]);
+    }
+
+    return response()->json(['error' => 'No files uploaded'], 400);
 }
+
 public function pdf_upload(){
     return view('pdf_upload');
 }
 public function pdf_store(Request $request){
-    $pdf = $request->file('file');
-    $pdfName = 'pdf_'.time().'.'.$pdf->extension();
-    $pdf->move(public_path('pdf/dropzone'), $pdfName);
-    return response()->json(['success'=>$pdfName]);
+    if($request->hasFile('file')){
+        $uploadedFiles = [];
+        foreach($request->file('file') as $pdf){
+            $pdfName = 'pdf_'.time().'.'.$pdf->getClientOriginalExtension();
+            $pdf->move(public_path('pdf/dropzone'), $pdfName);
+            $uploadedFiles[] = $pdfName;
+        }
+        return response()->json(['success' => $uploadedFiles]);
+    }
+    return response()->json(['error' => 'No files uploaded'], 400);
 }
+
 
 public function viewResize()
     {

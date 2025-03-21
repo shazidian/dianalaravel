@@ -129,7 +129,7 @@ Route::get('/upload', [UploadController::class, 'upload'])->name('upload');
 Route::post('/upload/proses', [UploadController::class, 'proses_upload'])
     ->name('upload.proses');
 //resize gambar
-Route::get('/upload/resize', [UploadController::class, 'viewResize'])->name('upload.resize');
+Route::get('/resize', [UploadController::class, 'viewResize'])->name('upload.resize');
 Route::post('/upload/resize/proses', [UploadController::class, 'proses_upload_resize'])->name('upload.proses.resize');
 //acara20
 Route::get('/dropzone', [UploadController::class, 'dropzone'])->name('dropzone');

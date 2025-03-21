@@ -30,6 +30,8 @@
             addRemoveLinks: true,
             createImageThumbnails: true,
             autoProcessQueue: false,
+            uploadMultiple: true,  // Tambahkan ini
+            parallelUploads: 10,   // Tentukan jumlah maksimum file yang di-upload bersamaan
             init: function () {
                 var myDropzone = this;
 

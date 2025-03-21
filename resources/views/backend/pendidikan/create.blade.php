@@ -52,7 +52,7 @@
                                             <label for="cname" class="control-label col-lg-2">Tingkatan <span
                                                 class="required">*</span></label>
                                             <div class="col-lg-10">
-                                                <select class="form-control m-bot15" name="tingkatan" id="tingkatan" required>
+                                                {{-- <select class="form-control m-bot15" name="tingkatan" id="tingkatan" required>
                                                     <option value="1"{{(isset($pendidikan) && $pendidikan->tingkatan ==1) ? 'selected' : ''}}>TK</option>
                                                     <option value="2"{{(isset($pendidikan) && $pendidikan->tingkatan ==2) ? 'selected' : ''}}>SD</option>
                                                     <option value="3"{{(isset($pendidikan) && $pendidikan->tingkatan ==3) ? 'selected' : ''}}>SMP</option>
@@ -61,7 +61,18 @@
                                                     <option value="6"{{(isset($pendidikan) && $pendidikan->tingkatan ==6) ? 'selected' : ''}}>D4/S1</option>
                                                     <option value="7"{{(isset($pendidikan) && $pendidikan->tingkatan ==7) ? 'selected' : ''}}>S2</option>
                                                     <option value="8"{{(isset($pendidikan) && $pendidikan->tingkatan ==8) ? 'selected' : ''}}>S3</option>
+                                                </select> --}}
+                                                <select class="form-control m-bot15" name="tingkatan" id="tingkatan" required>
+                                                    <option value="TK" {{(isset($pendidikan) && $pendidikan->tingkatan == 'TK') ? 'selected' : ''}}>TK</option>
+                                                    <option value="SD" {{(isset($pendidikan) && $pendidikan->tingkatan == 'SD') ? 'selected' : ''}}>SD</option>
+                                                    <option value="SMP" {{(isset($pendidikan) && $pendidikan->tingkatan == 'SMP') ? 'selected' : ''}}>SMP</option>
+                                                    <option value="SMA/SMK/MA" {{(isset($pendidikan) && $pendidikan->tingkatan == 'SMA/SMK/MA') ? 'selected' : ''}}>SMA/SMK/MA</option>
+                                                    <option value="D3" {{(isset($pendidikan) && $pendidikan->tingkatan == 'D3') ? 'selected' : ''}}>D3</option>
+                                                    <option value="D4/S1" {{(isset($pendidikan) && $pendidikan->tingkatan == 'D4/S1') ? 'selected' : ''}}>D4/S1</option>
+                                                    <option value="S2" {{(isset($pendidikan) && $pendidikan->tingkatan == 'S2') ? 'selected' : ''}}>S2</option>
+                                                    <option value="S3" {{(isset($pendidikan) && $pendidikan->tingkatan == 'S3') ? 'selected' : ''}}>S3</option>
                                                 </select>
+
                                             </div>
                                         </div>
                                         {{-- tahun masuk --}}
@@ -86,12 +97,12 @@
                                         </div>
                                         {{-- button save dan cancel --}}
                                         <div class="form-group">
-                                             <div class="col-lg-offset-2 col-lg-10">
-                                                <button class="btn btn_dark" type="submit">Save</button>
-                                                <a href="{{ route('pendidikan.index') }}"><button class="btn btn_light"
-                                                    type="button">Cancel</button></a>
+                                            <div class="col-lg-offset-2 col-lg-10">
+                                                <button class="btn btn-primary" type="submit">Save</button>
+                                                <a href="{{ route('pendidikan.index') }}" class="btn btn-secondary">Cancel</a>
                                             </div>
                                         </div>
+
                                     </form>
                                 </div>
 

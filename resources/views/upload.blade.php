@@ -20,7 +20,7 @@
                 </div>
                 @endif
 
-                <form action="{{ route('upload.resize') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('upload.proses') }}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
 
                     <div class="form-group">
@@ -51,7 +51,7 @@
                     </div>
 
                     @endif
-                    <form action="{{ route('upload.resize') }}" method="POST"
+                    <form action="{{ route('upload.proses') }}" method="POST"
                      enctype="multipart/form-data">
                 </form>
             </div>

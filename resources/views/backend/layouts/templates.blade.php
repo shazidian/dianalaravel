@@ -270,10 +270,9 @@
   </header><!-- End Header -->
 
 @include('backend.layouts.sidebar')
-<main class="main">
 
+<main id="main" class="main">
     @yield('content')
-
 </main>
   <!-- ======= Footer ======= -->
   {{-- <footer id="footer" class="footer">

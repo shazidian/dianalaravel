@@ -26,6 +26,8 @@
             acceptedFiles: ".pdf",
             addRemoveLinks: true,
             autoProcessQueue: false,
+            parallelUploads: 5, // Mengizinkan upload beberapa file secara bersamaan
+            uploadMultiple: true, // Aktifkan unggahan banyak file
             init: function () {
                 // AKSI KETIKA BUTTON UPLOAD DI KLIK
                 $("#button").click(function (e) {

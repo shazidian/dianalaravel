@@ -43,8 +43,8 @@
                             @foreach ($pendidikan as $item)
                             <tr>
                                 <td>{{ $item->nama }}</td>
-                                <td>
-                                    @if ($item->tingkatan==1)
+                                <td>{{ $item->tingkatan }}
+                                    {{-- @if ($item->tingkatan==1)
                                         TK
                                     @elseif ($item->tingkatan==2)
                                         SD
@@ -55,12 +55,12 @@
                                     @elseif ($item->tingkatan==5)
                                         D3
                                     @elseif ($item->tingkatan==6)
-                                        D4/S1
-                                    @elseif ($item->tingkatan==7)
+                                        D4/S1 --}}
+                                    {{-- @elseif ($item->tingkatan==7)
                                         S2
                                     @elseif ($item->tingkatan==8)
                                         S3
-                                    @endif
+                                    @endif --}}
                                 </td>
                                 <td>{{ $item->tahun_masuk }}</td>
                                 <td>{{ $item->tahun_keluar }}</td>
